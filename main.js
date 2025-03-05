@@ -10,13 +10,29 @@ function handleTaskActions(e) {
     const task = tasks[taskIndex];
 
     if (e.target.closest(".edit")) {
-        const newTitle = prompt("Enter the new task title:", task.title);
+        let newTitle = prompt("Enter the new task title:", task.title);
+
+        if (newTitle === null) return;
+
+        newTitle = newTitle.trim();
+
+        if (!newTitle) {
+            alert("Task title cannot be empty!");
+            return;
+        }
+
         task.title = newTitle;
         renderTasks();
-    } else if (e.target.closest(".done")) {
+        return;
+    }
+
+    if (e.target.closest(".done")) {
         task.completed = !task.completed;
         renderTasks();
-    } else if (e.target.closest(".delete")) {
+        return;
+    }
+
+    if (e.target.closest(".delete")) {
         if (confirm(`Are you sure you want to delete "${task.title}"?`)) {
             tasks.splice(taskIndex, 1);
             renderTasks();
