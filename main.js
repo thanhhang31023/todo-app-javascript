@@ -50,7 +50,23 @@ function handleTaskActions(e) {
         }
 
         if (isDuplicateTask(newTitle, taskIndex)) {
-            alert("Task with this title already exists! Please use a different task title!"); // Cảnh báo nếu tiêu đề trùng lặp
+            // Tìm phần tử bị trùng và highlight nó
+            const duplicateTask = [...document.querySelectorAll(".task-item")].find(
+                (taskEl) => taskEl.querySelector(".task-title").textContent.toLowerCase() === newTitle.toLowerCase()
+            );
+
+            if (duplicateTask) {
+                duplicateTask.style.border = "2px solid red"; // Đổi viền thành đỏ
+                setTimeout(() => {
+                    duplicateTask.style.border = "1px solid #ea9652"; // Đổi lại màu gốc
+                }, 2000);
+            }
+
+            // Hiển thị cảnh báo ngay lập tức (trước khi `alert()` dừng chương trình)
+            setTimeout(() => {
+                alert("Task with this title already exists! Please use a different task title!");
+            }, 0);
+
             return;
         }
 
@@ -85,7 +101,23 @@ function addTask(e) {
     if (!value) return alert("Please write something!"); // Cảnh báo nếu input rỗng
 
     if (isDuplicateTask(value)) {
-        alert("Task with this title already exists! Please use a different title."); // Cảnh báo nếu tiêu đề trùng lặp
+        // Tìm phần tử bị trùng và highlight nó trước khi hiển thị cảnh báo
+        const duplicateTask = [...document.querySelectorAll(".task-title")].find(
+            (task) => task.textContent.toLowerCase() === value.toLowerCase()
+        );
+
+        if (duplicateTask) {
+            duplicateTask.parentElement.style.border = "2px solid red"; // Đổi viền thành đỏ
+            setTimeout(() => {
+                duplicateTask.parentElement.style.border = "1px solid #ea9652"; // Đổi lại màu gốc
+            }, 2000);
+        }
+
+        // Dùng setTimeout để cảnh báo xuất hiện đồng thời với highlight
+        setTimeout(() => {
+            alert("Task with this title already exists! Please use a different title.");
+        }, 10);
+
         return;
     }
 
