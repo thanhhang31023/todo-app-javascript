@@ -50,9 +50,7 @@ function handleTaskActions(e) {
         }
 
         if (isDuplicateTask(newTitle, taskIndex)) {
-            alert(
-                "Task with this title already exists! Please use a different task title!"
-            ); // Cảnh báo nếu tiêu đề trùng lặp
+            alert("Task with this title already exists! Please use a different task title!"); // Cảnh báo nếu tiêu đề trùng lặp
             return;
         }
 
@@ -87,9 +85,7 @@ function addTask(e) {
     if (!value) return alert("Please write something!"); // Cảnh báo nếu input rỗng
 
     if (isDuplicateTask(value)) {
-        alert(
-            "Task with this title already exists! Please use a different title."
-        ); // Cảnh báo nếu tiêu đề trùng lặp
+        alert("Task with this title already exists! Please use a different title."); // Cảnh báo nếu tiêu đề trùng lặp
         return;
     }
 
@@ -105,8 +101,7 @@ function addTask(e) {
 // Hiển thị danh sách công việc
 function renderTasks() {
     if (!tasks.length) {
-        taskList.innerHTML =
-            '<li class="empty-message">No tasks available.</li>'; // Hiển thị thông báo nếu danh sách rỗng
+        taskList.innerHTML = '<li class="empty-message">No tasks available.</li>'; // Hiển thị thông báo nếu danh sách rỗng
         return;
     }
 
@@ -116,9 +111,7 @@ function renderTasks() {
     <li class="task-item ${
         task.completed ? "completed" : "" // Thêm class "completed" nếu công việc đã hoàn thành
     }" data-index="${index}">
-        <span class="task-title">${escapeHTML(
-            task.title
-        )}</span> <!-- Escape tiêu đề công việc -->
+        <span class="task-title">${escapeHTML(task.title)}</span> <!-- Escape tiêu đề công việc -->
         <div class="task-action">
             <button class="task-btn edit">Edit</button> <!-- Nút sửa -->
             <button class="task-btn done">${
