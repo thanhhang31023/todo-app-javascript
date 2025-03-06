@@ -126,3 +126,18 @@ main {
     font-style: italic;
     color: #888;
 }
+
+@media (max-width: 480px) {
+    main {
+        padding: 20px;
+    }
+
+    .task-action {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .task-btn {
+        font-size: 1.2rem;
+    }
+}
