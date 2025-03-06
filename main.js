@@ -13,6 +13,16 @@ function escapeHTML(html) {
     return div.innerHTML; // Trả về nội dung đã được escape
 }
 
+// Thêm tính năng Drag & Drop vào danh sách
+const sortable = new Sortable(taskList, {
+    animation: 150,
+    onEnd: function (evt) {
+        const [removed] = tasks.splice(evt.oldIndex, 1);
+        tasks.splice(evt.newIndex, 0, removed);
+        saveTasks();
+    },
+});
+
 // Kiểm tra xem tiêu đề công việc mới có bị trùng lặp không
 function isDuplicateTask(newTitle, excludeIndex = -1) {
     const isDuplicate = tasks.some(
