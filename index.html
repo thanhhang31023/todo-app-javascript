@@ -15,12 +15,16 @@
         <!-- CSS -->
         <link rel="stylesheet" href="styles.css" />
 
+        <!-- library --> 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
     </head>
     <body>
         <main>
             <!-- Page heading -->
             <h1 class="page-heading">Create your Todo-List</h1>
+
+          
+            
 
             <!-- Form -->
             <form id="todo-form" action="" class="todo-form">
@@ -33,6 +37,13 @@
                 />
                 <button id="submit" class="submit-btn" onmousedown="event.preventDefault()">Add</button>
             </form>
+
+             <!-- Filter buttons -->
+             <div class="filter-buttons">
+                <button data-filter="all">All</button>
+                <button data-filter="pending">Pending</button>
+                <button data-filter="completed">Completed</button>
+            </div>
 
             <!-- Task list -->
             <ul id="task-list" class="task-list"></ul>

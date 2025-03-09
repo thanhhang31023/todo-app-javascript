@@ -13,6 +13,33 @@ function escapeHTML(html) {
     return div.innerHTML; // Trả về nội dung đã được escape
 }
 
+
+// Lọc công việc theo trạng thái (hoàn thành/chưa hoàn thành)
+document.querySelector(".filter-buttons").addEventListener("click", (e) => {
+    if (!e.target.matches("button")) return;
+
+    // Xóa class "active" khỏi tất cả các nút
+    document.querySelectorAll(".filter-buttons button").forEach(btn => btn.classList.remove("active"));
+
+    // Thêm class "active" vào nút đang được chọn
+    e.target.classList.add("active");
+
+    // Lọc task
+    const filter = e.target.dataset.filter;
+    document.querySelectorAll(".task-item").forEach((task) => {
+        if (filter === "all") {
+            task.style.display = "flex";
+        } else if (filter === "pending" && task.classList.contains("completed")) {
+            task.style.display = "none";
+        } else if (filter === "completed" && !task.classList.contains("completed")) {
+            task.style.display = "none";
+        } else {
+            task.style.display = "flex";
+        }
+    });
+});
+
+
 // Thêm tính năng Drag & Drop vào danh sách
 const sortable = new Sortable(taskList, {
     animation: 150,
